@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+/**
+ * By Usman Siddiqui
+ * Skype username : usmaan.siddiquii1
+ */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout rlmain;
     Button example1, example2, example3, example4, example5, example6;
@@ -58,19 +63,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setWarningTappedColor("#ff704d")
                         .setWarningBoxPosition(MaterialNotification.WarningPos.BOTTOM)
                         .setAnimation(MaterialNotification.RevealAnim.FADE_IN, MaterialNotification.DismissAnim.BACK_TO_BOTTOM, 400, 400)
+                        .setAutoDismiss(true,1500)
                         .show();
                 break;
 
             case R.id.example3:
-                MaterialNotification.init(MainActivity.this, "This app needs to be updated. Please download the latest version.", rlmain,
-                        MaterialNotification.WarningStyle.ACTION)
-                        .setActionText("OK")
-                        .setHeight(new RelativeLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT))
-                        .setWarningBoxBgColor("#00b8e6")
-                        .setWarningTappedColor("#00ccff")
-                        .setWarningBoxMargins(40, 0, 40, 0)
-                        .setWarningBoxPosition(MaterialNotification.WarningPos.CENTER)
-                        .setAnimation(MaterialNotification.RevealAnim.FADE_IN, MaterialNotification.DismissAnim.FADE_OUT, 400, 400)
+                MaterialNotification.init(MainActivity.this, "No internet connection!", rlmain,
+                        MaterialNotification.WarningStyle.SIMPLE)
+                        .setWarningBoxPosition(MaterialNotification.WarningPos.TOP)
+                        .setAnimation(MaterialNotification.RevealAnim.SLIDE_DOWN, MaterialNotification.DismissAnim.BACK_TO_TOP, 400, 400)
+                        .setWarningInset(0, 0, 0, 0)
+                        .setWarningBoxRadius(0, 0, 0, 0)
+                        .setAutoDismiss(true,1500)
                         .show();
                 break;
 
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAnimation(MaterialNotification.RevealAnim.SLIDE_UP, MaterialNotification.DismissAnim.BACK_TO_BOTTOM, 400, 400)
                         .setWarningInset(0, 0, 0, 0)
                         .setWarningBoxRadius(0, 0, 0, 0)
+                        .setAutoDismiss(true,1500)
                         .show();
                 break;
 
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setWarningInset(0, 0, 0, 0)
                         .setWarningBoxRadius(0, 0, 0, 0)
                         .setAnimation(MaterialNotification.RevealAnim.SLIDE_DOWN, MaterialNotification.DismissAnim.BACK_TO_TOP, 400, 400)
+                        .setAutoDismiss(true,1500)
                         .show();
                 break;
 
@@ -106,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setWarningBoxRadius(0, 0, 25, 25)
                         .setWarningBoxMargins(25, -5, 25, 0)
                         .setAnimation(MaterialNotification.RevealAnim.SLIDE_DOWN, MaterialNotification.DismissAnim.BACK_TO_TOP, 400, 400)
+                        .setAutoDismiss(true,1500)
                         .show();
                 break;
         }

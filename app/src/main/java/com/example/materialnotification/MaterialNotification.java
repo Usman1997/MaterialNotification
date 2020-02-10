@@ -26,6 +26,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * By Usman Siddiqui
+ * Skype username : usmaan.siddiquii1
+ */
+
 public class MaterialNotification {
     private Context context;
     private Resources resources;
@@ -117,6 +122,7 @@ public class MaterialNotification {
 
     private Runnable mRunnable;
     private Handler mHandler;
+    private boolean isDismissed = false;
 
     public MaterialNotification(Context context, String warningMessage, ViewGroup parentLayout, WarningStyle warningStyle) {
         this.context = context;
@@ -267,19 +273,21 @@ public class MaterialNotification {
         return this;
     }
 
-    public MaterialNotification setAutoDismiss(boolean isAutoDismiss,int duration){
+    public MaterialNotification setAutoDismiss(final boolean isAutoDismiss, int duration){
         if(isAutoDismiss){
             mHandler =new Handler();
             mRunnable=new Runnable() {
                 @Override
                 public void run() {
-                    createWarning(warningBoxBgColor, false);
-                    warningBox.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-                    warningBox.setBackground(layerDrawable);
-                    warningBox.startAnimation(dismissAnimation);
+                    if(!isDismissed){
+                        createWarning(warningBoxBgColor, false);
+                        warningBox.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+                        warningBox.setBackground(layerDrawable);
+                        warningBox.startAnimation(dismissAnimation);
+                    }
+
                 }
             };
-
             mHandler.postDelayed(mRunnable,duration);
 
         }
@@ -650,6 +658,7 @@ public class MaterialNotification {
                         warningBox.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                         warningBox.setBackground(layerDrawable);
                         warningBox.startAnimation(dismissAnimation);
+                        isDismissed = true;
                     }
                     if (tapListener != null) {
                         tapListener.onTap(MaterialNotification.this);
@@ -670,6 +679,7 @@ public class MaterialNotification {
                 case MotionEvent.ACTION_UP:
                     setActionTextColor(actionTextColor);
                     warningBox.startAnimation(dismissAnimation);
+                    isDismissed = true;
                     if (clickListener != null) {
                         clickListener.onClick(MaterialNotification.this);
                     }
